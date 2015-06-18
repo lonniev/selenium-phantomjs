@@ -24,3 +24,15 @@ end
 chef_gem "phantomjs" do
   compile_time false
 end
+
+phantomjsPath = Pathname( '/ProgramData/chocolatey/bin/phantomjs' )
+
+chocolatey "phantomjs" do
+  action :install
+  options { "y" => nil, "f" => nil }
+  not_if { phantomjsPath.exist? }
+end
+
+windows_path phantomjsPath.to_s do
+  action :add
+end
