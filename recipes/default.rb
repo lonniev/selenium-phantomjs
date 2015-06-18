@@ -27,9 +27,11 @@ end
 
 phantomjsPath = Pathname( '/ProgramData/chocolatey/bin/phantomjs' )
 
+justDoItOptions = { "y" => nil, "f" => nil }
+
 chocolatey "phantomjs" do
   action :install
-  options { "y" => nil, "f" => nil }
+  options justDoItOptions
   not_if { phantomjsPath.exist? }
 end
 
